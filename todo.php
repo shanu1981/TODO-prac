@@ -1,6 +1,6 @@
 <?php
     require_once 'functions.php';
-
+    date_default_timezone_set('Asia/Kolkata');
     $tasks = getAllTasks();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -44,7 +44,7 @@
 </head>
 <body>
     <h1>Todo List</h1>
-
+    
     <form method="post">
         <input type="text" name="task" placeholder="Enter task" required>
         <button type="submit" name="addTask">Add Task</button>
@@ -55,12 +55,15 @@
             <tr>
                 <th>Task</th>
                 <th>Actions</th>
+                <th>Date and time</th>
+
             </tr>
         </thead>
         <tbody>
             <?php foreach ($tasks as $index => $task) : ?>
                 <tr>
-                    <td><?php echo $task; ?></td>
+                    <td><?php echo $task['task']; ?></td>
+                    <td><?php echo $task['datetime']; ?></td> 
                     <td>
                         <form method="post" style="display: inline-block;">
                             <input type="hidden" name="taskIndex" value="<?php echo $index; ?>">
