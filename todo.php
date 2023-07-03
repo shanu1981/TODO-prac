@@ -9,11 +9,11 @@
              $task = $_POST['task'];
              addtask($task);
           }
-        if(isset($_POST['delete']))
-        {
-          $taskdel = $_POST['delete'];
-          deletetask($taskdel);
-        }
+      //   if(isset($_POST['delete']))
+      //   {
+      //     $taskdel = $_POST['delete'];
+      //     deletetask($taskdel);
+      //   }
       }
     $tasks = gettask();
     ?>
@@ -31,9 +31,9 @@
     <div>
     <input type="text" name="task" placeholder="Enter a task">
     </div>
-    <div>
+    <!-- <div>
     <input type="number" name="delete" placeholder="Enter task ID to delete">
-    </div>
+    </div> -->
     <br>
     <button type="submit">Add task</button> 
 </form>
