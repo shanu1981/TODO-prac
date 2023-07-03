@@ -12,7 +12,10 @@
 
     function addTask($task) {
         $tasks = getAllTasks();
-        $tasks[] = $task;
+        $tasks[] = [
+            'task' => $task,
+            'datetime'=> date('Y-m-d H:i:s') 
+        ];
         saveTasks($tasks);
     }
 
@@ -27,7 +30,8 @@
     function updateTask($taskIndex, $updatedTask) {
         $tasks = getAllTasks();
         if (isset($tasks[$taskIndex])) {
-            $tasks[$taskIndex] = $updatedTask;
+            $tasks[$taskIndex]['task'] = $updatedTask;
+            $task[$taskIndex]['datetime'] = date('Y-m-d H:i:s');
             saveTasks($tasks);
         }
     }
