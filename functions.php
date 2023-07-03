@@ -1,36 +1,40 @@
-<?php 
+<?php
+    function getAllTasks() {
+        $tasks = [];
 
-   function gettask()
-   {
-      $tasks = [];
-      if(file_exists('tasks.json'))
-      {
-        $tasks = json_decode(file_get_contents('tasks.json'));
-      }
-      return $tasks;
-   }
+        if (file_exists('tasks.json')) {
+            $tasksJson = file_get_contents('tasks.json');
+            $tasks = json_decode($tasksJson, true);
+        }
 
-   function addtask($task)
-   {
-     $tasks = gettask();
-     $tasks[] = $task;
-     file_put_contents('tasks.json',json_encode($tasks));
-   }
+        return $tasks;
+    }
 
-  //  function saveTask($tasks)
-  //  {
-  //      $json = json_encode($tasks, JSON_PRETTY_PRINT);
-  //      file_put_contents('tasks.json', $json);
-  //  }
+    function addTask($task) {
+        $tasks = getAllTasks();
+        $tasks[] = $task;
+        saveTasks($tasks);
+    }
 
-  //  function deletetask($taskdel)
-  //  {
-  //    $tasks=gettask();
-  //    if(isset($tasks[$taskdel]))
-  //    {    
-  //     unset($tasks[$taskdel]);
-  //     saveTask($tasks);
-  //    }
-  //  }
+    function deleteTask($taskIndex) {
+        $tasks = getAllTasks();
+        if (isset($tasks[$taskIndex])) {
+            unset($tasks[$taskIndex]);
+            saveTasks($tasks);
+        }
+    }
 
+    function updateTask($taskIndex, $updatedTask) {
+        $tasks = getAllTasks();
+        if (isset($tasks[$taskIndex])) {
+            $tasks[$taskIndex] = $updatedTask;
+            saveTasks($tasks);
+        }
+    }
 
+    function saveTasks($tasks) {
+        $tasksJson = json_encode($tasks, JSON_PRETTY_PRINT);
+        file_put_contents('tasks.json', $tasksJson);
+    }
+
+?>
