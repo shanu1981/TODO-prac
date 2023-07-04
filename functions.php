@@ -31,7 +31,7 @@
         $tasks = getAllTasks();
         if (isset($tasks[$taskIndex])) {
             $tasks[$taskIndex]['task'] = $updatedTask;
-            $task[$taskIndex]['datetime'] = date('Y-m-d H:i:s');
+            $tasks[$taskIndex]['datetime'] = date('Y-m-d H:i:s');
             saveTasks($tasks);
         }
     }

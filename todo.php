@@ -54,8 +54,8 @@
         <thead>
             <tr>
                 <th>Task</th>
-                <th>Actions</th>
                 <th>Date and time</th>
+                <th>Actions</th>
 
             </tr>
         </thead>
